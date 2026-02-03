@@ -13,4 +13,6 @@ Pod::Spec.new do |s|
   s.frameworks   = 'UIKit', 'Foundation', 'AudioToolbox'
   s.dependency 'NTUnityIn'
   s.dependency 'EpicUnityAdapter'
+  s.dependency 'TALMsgSdk'
+  s.dependency 'TALPush'
 end

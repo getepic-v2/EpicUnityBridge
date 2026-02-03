@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Register all Epic business plugins with NTUnityIn message center
 + (void)registerPlugins;
 
++ (void)registerSignInPlugins;
+
 @end
 
 NS_ASSUME_NONNULL_END

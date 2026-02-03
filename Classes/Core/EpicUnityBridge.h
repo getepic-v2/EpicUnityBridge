@@ -12,19 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface EpicUnityBridge : NSObject <NTUnityInSDKDelegate>
+@interface EpicUnityBridge : NSObject
 
 + (instancetype)sharedInstance;
 
 + (void)setupUnitySDK;
-
-/// Initialize the NTUnityIn SDK. Call in AppDelegate didFinishLaunchingWithOptions.
-/// @param appId Application ID for NTUnityIn
-/// @param appSecret Application secret for NTUnityIn
-/// @param environment Environment string (e.g. @"release", @"dev")
-+ (void)setupSDKWithAppId:(NSString *)appId
-                appSecret:(NSString *)appSecret
-              environment:(NSString *)environment;
 
 /// Load a Unity scene.
 /// @param sceneId The scene identifier to load
@@ -53,9 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) void (^willEnterSceneBlock)(void);
 /// Called after exiting Unity scene (e.g., to restore portrait)
 @property (nonatomic, copy, nullable) void (^didExitSceneBlock)(void);
-
-/// Inject windowScene into Unity windows (call after scene loads under iOS 13+)
-- (void)injectWindowSceneIfNeeded;
 
 @end
 
