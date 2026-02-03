@@ -67,10 +67,11 @@
     [EpicUnitySDKAgent sharedInstance].delegate = [EpicUnityBusinessData sharedInstance];
 
     // Transfer callbacks to business data
-    [EpicUnityBusinessData sharedInstance].willEnterSceneBlock = self.willEnterSceneBlock;
     [EpicUnityBusinessData sharedInstance].didExitSceneBlock = self.didExitSceneBlock;
+    [EpicUnityBusinessData sharedInstance].willEnterSceneBlock = self.willEnterSceneBlock;
 
     // Register plugins
+    [[NTUnityInSDK shareInstance] exitScene];
     [EpicUnityPluginRegistry registerPlugins];
 
     self.currentSceneId = sceneId;
@@ -79,13 +80,12 @@
 }
 
 - (void)loadLocalSceneWithZip:(NSString *)zipName modName:(NSString *)modName {
-    
     // Transfer callbacks to business data
-    [EpicUnityBusinessData sharedInstance].willEnterSceneBlock = self.willEnterSceneBlock;
-    [EpicUnityBusinessData sharedInstance].didExitSceneBlock = self.didExitSceneBlock;
+    [EpicUnitySDKAgent sharedInstance].didExitSceneBlock = self.didExitSceneBlock;
+    [EpicUnitySDKAgent sharedInstance].willEnterSceneBlock = self.willEnterSceneBlock;
 
     [[NTUnityInSDK shareInstance] exitScene];
-    [EpicUnityPluginRegistry registerPlugins];
+    [EpicUnityPluginRegistry registerSignInPlugins];
 
     NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSString *destDir = [docPath stringByAppendingPathComponent:@"UnityModTemp"];

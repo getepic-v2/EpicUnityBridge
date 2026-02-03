@@ -14,6 +14,9 @@
 #import "EpicUserInfoPlugin.h"
 #import "EpicInfoPlugin.h"
 
+// SignIn Plugins
+#import "EpicSignInUnityBusiness.h"
+
 
 @implementation EpicUnityPluginRegistry
 
@@ -30,7 +33,7 @@
 
 + (void)registerSignInPlugins {
     [[NTUSDKMessageCenter shareInstance] registerMsgPlugins:@[
-        
+        EpicSignInUnityBusiness.class,
     ]];
 }
 @end

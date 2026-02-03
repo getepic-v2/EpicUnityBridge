@@ -11,7 +11,6 @@
 
 @interface EpicUnityBusinessData ()
 
-@property (nonatomic, assign) BOOL sceneShown;
 
 @end
 
@@ -77,24 +76,6 @@
 
     self.planId = sceneId;
 
-    // Show Unity scene during SceneLoad phase for local mod
-    if (status == NTUSceneLoadStatusSceneLoad && config.backgroundLoad) {
-        if (subCode.floatValue > 100.0) {
-            if (!self.sceneShown) {
-                self.sceneShown = YES;
-
-                // Set orientation before showing
-                if (self.willEnterSceneBlock) {
-                    self.willEnterSceneBlock();
-                }
-
-                // Show Unity window
-                [[NTUnityInSDK shareInstance] showScene];
-                NSLog(@"[EpicUnityBusinessData] showScene called (subCode: %@)", subCode);
-            }
-        }
-    }
-
     // Scene load complete
     if (status == NTUSceneLoadStatusComplete) {
         // Mark as not first load after successful load (for non-local scenes)
@@ -111,7 +92,6 @@
     NSLog(@"[EpicUnityBusinessData] sceneDidExit: %@", sceneId);
 
     self.planId = nil;
-    self.sceneShown = NO;
 
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.didExitSceneBlock) {

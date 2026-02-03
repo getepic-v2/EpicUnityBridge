@@ -21,6 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// Current plan/scene ID
 @property (nonatomic, copy, nullable) NSString *planId;
 
+/// Called before entering Unity scene (e.g., to force landscape)
+@property (nonatomic, copy, nullable) void (^willEnterSceneBlock)(void);
+
+/// Called after exiting Unity scene (e.g., to restore portrait)
+@property (nonatomic, copy, nullable) void (^didExitSceneBlock)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

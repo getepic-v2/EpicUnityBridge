@@ -11,7 +11,9 @@
 
 @interface EpicUnitySDKAgent ()
 
+@property (nonatomic, assign) BOOL sceneShown;
 @property (nonatomic, assign) NTUSceneLoadStatus sceneLoadStatus;
+
 @property (nonatomic, copy, nullable) NSString *sceneLoadSubCode;
 
 @end
@@ -91,6 +93,19 @@
 
     if ([self.delegate respondsToSelector:@selector(sceneId:sceneConfig:loadStatus:subCode:)]) {
         [self.delegate sceneId:sceneId sceneConfig:config loadStatus:status subCode:subCode];
+    }
+    
+    // Show Unity scene during SceneLoad phase for local mod
+    if (status == NTUSceneLoadStatusSceneLoad && config.backgroundLoad) {
+        if (subCode.floatValue > 100.0) {
+            if (!self.sceneShown) {
+                self.sceneShown = YES;
+
+                // Show Unity window
+                [[NTUnityInSDK shareInstance] showScene];
+                NSLog(@"[EpicUnityBusinessData] showScene called (subCode: %@)", subCode);
+            }
+        }
     }
 
     // 本地 mod 加载完成时直接显示 Unity 场景
