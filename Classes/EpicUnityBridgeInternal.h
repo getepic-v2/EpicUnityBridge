@@ -33,4 +33,6 @@
 #import <EpicWXCommonKit/ErrorView.h>
 #import <EpicWXCommonKit/WXAnimationManager.h>
 
+#import <EpicWXCommonKit/WXCommonMacro.h>
+
 #endif /* EpicUnityBridgeInternal_h */
