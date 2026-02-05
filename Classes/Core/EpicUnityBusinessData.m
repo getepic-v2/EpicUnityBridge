@@ -61,14 +61,14 @@
     NSLog(@"[EpicUnityBusinessData] beginDownloadResource sceneId: %@ gameId: %@ cacheExist: %d", sceneId, gameId, cacheExist);
 
     // Configure custom loading here if needed
-    // Example: [[EpicUnityLoadingManager sharedManager] configLoadingVideoUrl:@"your_video_url"];
+//     [[EpicUnityLoadingManager sharedManager] configLoadingVideoUrl:@"your_video_url"];
 }
 
 - (void)sceneLoadingVideoBeignPlay:(NSString *)sceneId sceneConfig:(NTUSceneConfig *)config {
     NSLog(@"[EpicUnityBusinessData] sceneLoadingVideoBeignPlay: %@", sceneId);
 
     // Show custom loading view if needed
-    // Example: [[EpicUnityLoadingManager sharedManager] showCustomLoadingView];
+//    [[EpicUnityLoadingManager sharedManager] showCustomLoadingView];
 }
 
 - (void)sceneId:(NSString *)sceneId sceneConfig:(NTUSceneConfig *)config loadStatus:(NTUSceneLoadStatus)status subCode:(NSString *)subCode {

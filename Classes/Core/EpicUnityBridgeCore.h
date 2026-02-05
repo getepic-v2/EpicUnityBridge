@@ -1,5 +1,5 @@
 //
-//  EpicUnityBridge.h
+//  EpicUnityBridgeCore.h
 //  EpicUnityBridge
 //
 //  Entry point for Unity scene integration in Epic app.

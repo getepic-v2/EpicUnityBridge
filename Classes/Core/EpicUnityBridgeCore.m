@@ -1,9 +1,9 @@
 //
-//  EpicUnityBridge.m
+//  EpicUnityBridgeCore.m
 //  EpicUnityBridge
 //
 
-#import "EpicUnityBridge.h"
+#import "EpicUnityBridgeCore.h"
 #import "EpicUnitySDKAgent.h"
 #import "EpicUnitySceneConfig.h"
 #import "EpicUnityBusinessData.h"
@@ -38,13 +38,13 @@
 //    config.appSerect = @"2f4a6b8c0d2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c5d6e7f8a9b0c1d2e3f4a";
 //    config.envType = NTUSDKEnvTypeRelease;
 
-    config.appId = @"50";
-    config.appSerect = @"7f8a9b2c3d4e5f6a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a";
+    config.appId = @"20";
+    config.appSerect = @"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
     config.envType = NTUSDKEnvTypeTest;
 
     NTUnityInHostConfig *hostConfig = [[NTUnityInHostConfig alloc] init];
-    hostConfig.host = @"https://science.chuangjing.com";
-    hostConfig.hostTest = @"https://science-test.chuangjing.com";
+    hostConfig.host = @"https://math.chuangjing.com";
+    hostConfig.hostTest = @"https://math-test.chuangjing.com";
     hostConfig.ircAppId = @"next20001";
     hostConfig.ircAppKey = @"ZjlmNjdlYjNhMjE3MDJiZg";
     hostConfig.ircAppIdTest = @"next10001";

@@ -13,6 +13,17 @@ Pod::Spec.new do |s|
   s.frameworks   = 'UIKit', 'Foundation', 'AudioToolbox'
   s.dependency 'NTUnityIn'
   s.dependency 'EpicUnityAdapter'
+  s.dependency 'EpicWXCommonKit'
   s.dependency 'TALMsgSdk'
   s.dependency 'TALPush'
+  s.dependency 'WXToolKit'
+#  s.dependency 'WXPlayer'
+  s.dependency 'YYKit'
+
+  # Prefix header - auto import dependencies and internal common header
+  s.prefix_header_contents = <<-PREFIX
+#ifdef __OBJC__
+  #import "EpicUnityBridgeInternal.h"
+#endif
+  PREFIX
 end

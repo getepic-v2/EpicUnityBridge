@@ -16,7 +16,7 @@
 
 // SignIn Plugins
 #import "EpicSignInUnityBusiness.h"
-
+#import "AZDressUnityBusiness.h"
 
 @implementation EpicUnityPluginRegistry
 
@@ -34,6 +34,7 @@
 + (void)registerSignInPlugins {
     [[NTUSDKMessageCenter shareInstance] registerMsgPlugins:@[
         EpicSignInUnityBusiness.class,
+        AZDressUnityBusiness.class
     ]];
 }
 @end
