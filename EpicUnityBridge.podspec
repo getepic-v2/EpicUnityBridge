@@ -10,16 +10,11 @@ Pod::Spec.new do |s|
   s.source       = { :path => '.' }
   s.source_files = 'Classes/**/*.{h,m}'
   s.public_header_files = 'Classes/**/*.h'
-  s.frameworks   = 'UIKit', 'Foundation', 'AudioToolbox'
+  
   s.dependency 'NTUnityIn'
-  s.dependency 'EpicUnityAdapter'
   s.dependency 'EpicWXCommonKit'
-  s.dependency 'TALMsgSdk'
-  s.dependency 'TALPush'
-  s.dependency 'WXToolKit'
-#  s.dependency 'WXPlayer'
-  s.dependency 'YYKit'
-
+  s.dependency 'EpicUnityAdapter'
+  
   # Prefix header - auto import dependencies and internal common header
   s.prefix_header_contents = <<-PREFIX
 #ifdef __OBJC__

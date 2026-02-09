@@ -17,6 +17,7 @@
 // SignIn Plugins
 #import "EpicSignInUnityBusiness.h"
 #import "AZDressUnityBusiness.h"
+#import "AZAppModuleToUnityBusiness.h"
 
 @implementation EpicUnityPluginRegistry
 
@@ -28,6 +29,7 @@
         EpicLoadingPlugin.class,
         EpicUserInfoPlugin.class,
         EpicInfoPlugin.class,
+        AZAppModuleToUnityBusiness.class
     ]];
 }
 

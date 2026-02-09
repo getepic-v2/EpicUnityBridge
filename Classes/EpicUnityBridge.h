@@ -16,10 +16,6 @@
 #import <EpicUnityBridge/EpicUnityLoadingManager.h>
 #import <EpicUnityBridge/EpicUnityBusinessData.h>
 
-// Manager
-#import <EpicUnityBridge/EpicPushManager.h>
-#import <EpicUnityBridge/EpicPushMessageEntity.h>
-
 // Plugins
 #import <EpicUnityBridge/EpicDeviceInfoPlugin.h>
 #import <EpicUnityBridge/EpicVibratePlugin.h>

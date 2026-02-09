@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface EpicUnityBridge : NSObject
+@interface EpicUnityBridgeCore : NSObject
 
 + (instancetype)sharedInstance;
 

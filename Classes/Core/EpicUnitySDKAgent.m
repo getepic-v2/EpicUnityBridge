@@ -30,6 +30,14 @@
 }
 
 #pragma mark - NTUnityInSDKDelegate
+// unity report
+- (void)sceneId:(NSString *)sceneId sceneConfig:(NTUSceneConfig *)config eventId:(NSString *)eventId eventParams:(NSDictionary *)params {
+    // Forward analytics events
+    id<EUAAnalyticsProvider> analytics = [EpicUnityAdapterManager sharedInstance].analyticsProvider;
+    NSMutableDictionary *allParams = [NSMutableDictionary dictionary];
+    [allParams addEntriesFromDictionary:params];
+    [analytics trackEvent:@"unity_SNO日志" params:allParams];
+}
 
 - (void)sceneLoadTimeOut:(NSString *)sceneId sceneConfig:(NTUSceneConfig *)config {
     NSLog(@"[EpicUnitySDKAgent] sceneLoadTimeOut: %@", sceneId);
@@ -137,18 +145,6 @@
 
     if ([self.delegate respondsToSelector:@selector(sceneDidExit:sceneConfig:)]) {
         [self.delegate sceneDidExit:sceneId sceneConfig:config];
-    }
-}
-
-- (void)sceneId:(NSString *)sceneId sceneConfig:(NTUSceneConfig *)config eventId:(NSString *)eventId eventParams:(NSDictionary *)params {
-    // Forward analytics events
-    id<EUAAnalyticsProvider> analytics = [EpicUnityAdapterManager sharedInstance].analyticsProvider;
-    NSMutableDictionary *allParams = [NSMutableDictionary dictionaryWithDictionary:params ?: @{}];
-    allParams[@"sceneId"] = sceneId ?: @"";
-    [analytics trackEvent:eventId params:allParams];
-
-    if ([self.delegate respondsToSelector:@selector(sceneId:sceneConfig:eventId:eventParams:)]) {
-        [self.delegate sceneId:sceneId sceneConfig:config eventId:eventId eventParams:params];
     }
 }
 

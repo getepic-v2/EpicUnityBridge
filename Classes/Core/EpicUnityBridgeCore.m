@@ -14,19 +14,19 @@
 #import <NTUnityIn/NTUSDKMessageCenter.h>
 #import <EpicUnityAdapter/EpicUnityAdapterManager.h>
 
-@interface EpicUnityBridge ()
+@interface EpicUnityBridgeCore ()
 
 @property (nonatomic, strong, nullable) NSString *currentSceneId;
 
 @end
 
-@implementation EpicUnityBridge
+@implementation EpicUnityBridgeCore
 
 + (instancetype)sharedInstance {
-    static EpicUnityBridge *instance = nil;
+    static EpicUnityBridgeCore *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[EpicUnityBridge alloc] init];
+        instance = [[EpicUnityBridgeCore alloc] init];
     });
     return instance;
 }

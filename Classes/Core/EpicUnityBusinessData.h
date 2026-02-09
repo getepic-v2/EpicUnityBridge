@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Whether this is the first scene load in current session
 @property (nonatomic, assign) BOOL isFirstLoadScene;
 
+//将此值置为YES可以使pause不出现全屏loading遮盖，注意每次pause都需要设置
+@property (nonatomic, assign) BOOL pauseWithOutLoading;
+
 /// Called before entering Unity scene (e.g., to force landscape)
 @property (nonatomic, copy, nullable) void (^willEnterSceneBlock)(void);
 
