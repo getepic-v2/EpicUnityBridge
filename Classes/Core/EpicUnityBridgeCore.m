@@ -14,6 +14,9 @@
 #import <NTUnityIn/NTUSDKMessageCenter.h>
 #import <EpicUnityAdapter/EpicUnityAdapterManager.h>
 
+/// Notification name from EpicAuthProvider when headers are updated
+extern NSString * const EpicAuthProviderHeadersDidUpdateNotification;
+
 @interface EpicUnityBridgeCore ()
 
 @property (nonatomic, strong, nullable) NSString *currentSceneId;
@@ -27,11 +30,29 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[EpicUnityBridgeCore alloc] init];
+        [instance setupNotificationObservers];
     });
     return instance;
 }
 
+- (void)setupNotificationObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleHeadersDidUpdate:)
+                                                 name:EpicAuthProviderHeadersDidUpdateNotification
+                                               object:nil];
+}
+
+- (void)handleHeadersDidUpdate:(NSNotification *)notification {
+    NSDictionary *headers = notification.userInfo[@"headers"];
+    if (headers) {
+        [[NTUnityInSDK shareInstance] updateExtraHeaders:headers];
+    }
+}
+
 + (void)setupUnitySDK {
+    // Ensure sharedInstance is initialized to setup notification observers
+    [self sharedInstance];
+
     NTUnityInSDKConfig *config = [[NTUnityInSDKConfig alloc] init];
 
 //    config.appId = @"50";
@@ -41,15 +62,16 @@
     config.appId = @"20";
     config.appSerect = @"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
     config.envType = NTUSDKEnvTypeTest;
+    config.extraHeaders = [EpicUnityAdapterManager sharedInstance].authProvider.defaultHeaders;
 
     NTUnityInHostConfig *hostConfig = [[NTUnityInHostConfig alloc] init];
-    hostConfig.host = @"https://math.chuangjing.com";
-    hostConfig.hostTest = @"https://math-test.chuangjing.com";
+    hostConfig.host = @"https://epic.chuangjing.com";
+    hostConfig.hostTest = @"https://epic-test.chuangjing.com";
     hostConfig.ircAppId = @"next20001";
     hostConfig.ircAppKey = @"ZjlmNjdlYjNhMjE3MDJiZg";
     hostConfig.ircAppIdTest = @"next10001";
     hostConfig.ircAppKeyTest = @"NjY1NTQzMjUyOWI5OTlkZg";
-
+    
     [NTUnityInSDK SDKInitWithConfig:config];
 
     // Set EpicUnitySDKAgent as the SDK delegate (middle layer)
